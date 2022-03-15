@@ -1,10 +1,14 @@
-const {User, Post} = require("../../models");
+const { Post, User } = require("../../models");
 const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  User.findAll({
-    attributes: ["username", "email"],
+  Post.findAll({
+    attributes: ["title", "content"],
+    include: {
+      model: User,
+      attributes: ["username"],
+    },
   })
     .then((data) => {
       res.status(200).json(data);
@@ -16,11 +20,11 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  User.findOne({
-    attributes: ["username", "email"],
+  Post.findOne({
+    attributes: ["title", "content"],
     include: {
-      model: Post,
-      attributes: ['title', 'content']
+      model: User,
+      attributes: ["username"],
     },
     where: {
       id: req.params.id,
@@ -36,10 +40,10 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
+  Post.create({
+    title: req.body.title,
+    content: req.body.content,
+    user_id: req.body.user_id,
   })
     .then((data) => {
       res.status(200).json(data);
@@ -51,10 +55,10 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  User.update(
+  Post.update(
     {
-      username: req.body.username,
-      email: req.body.email,
+      title: req.body.title,
+      content: req.body.content,
     },
     {
       where: {
@@ -72,7 +76,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  User.destroy({
+  Post.destroy({
     where: {
       id: req.params.id,
     },
@@ -85,4 +89,5 @@ router.delete("/:id", (req, res) => {
       console.log(err);
     });
 });
+
 module.exports = router;
