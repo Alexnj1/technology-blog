@@ -1,6 +1,5 @@
 // IMPORT NECESSARY DEPENDENCIES
 const express = require("express");
-// const Sequelize = require('sequelize')
 const sequelize = require("./db/database-connection");
 const path = require("path");
 const exphbs = require("express-handlebars");
@@ -33,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session(sess));
-// app.use(routes);
+// app.use(routes); // this will be used for routes 
 
 // ENABLE CONNECTION
 sequelize.sync({ force: false }).then(() => {
