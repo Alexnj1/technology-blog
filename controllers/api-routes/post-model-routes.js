@@ -1,10 +1,20 @@
-const { Post, User } = require("../../models");
+const { Post, User, Comment } = require("../../models");
 const express = require("express");
+const sequelize = require("../../db/database-connection");
 const router = express.Router();
 
 router.get("/", (req, res) => {
   Post.findAll({
-    attributes: ["title", "content"],
+    attributes: [
+      "title",
+      "content",
+      [
+        sequelize.literal(
+          "(SELECT COUNT (*) FROM comment  WHERE comment.post_id = post.id)"
+        ),
+        "comment_count",
+      ],
+    ],
     include: {
       model: User,
       attributes: ["username"],
@@ -22,10 +32,16 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Post.findOne({
     attributes: ["title", "content"],
-    include: {
-      model: User,
-      attributes: ["username"],
-    },
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+      {
+        model: Comment,
+        attributes: ["text", "createdAt", "updatedAt"],
+      },
+    ],
     where: {
       id: req.params.id,
     },

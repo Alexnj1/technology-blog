@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   Comment.findAll({
-    attributes: ["id", "text"],
+    attributes: ["id", "text", "createdAt"],
     include: [
       {
         model: User,
@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   Comment.findOne({
-    attributes: ["id","text"],
+    attributes: ["id", "text"],
     include: {
       model: Post,
       attributes: ["title"],
@@ -80,7 +80,7 @@ router.put("/:id", (req, res) => {
     }
   )
     .then(() => {
-      res.status(200).json({Status: 'Success!'});
+      res.status(200).json({ Status: "Success!" });
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -95,7 +95,7 @@ router.delete("/:id", (req, res) => {
     },
   })
     .then(() => {
-      res.status(200).json({Status: 'Success!'});
+      res.status(200).json({ Status: "Success!" });
     })
     .catch((err) => {
       res.status(500).json(err);

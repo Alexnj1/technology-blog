@@ -7,7 +7,8 @@ User.hasMany(Post, {
 });
 
 User.hasMany(Comment, {
-  foreignKey: "post_id",
+  foreignKey: "user_id",
+  as: "Comments Posted"
 });
 
 Post.hasMany(Comment, {

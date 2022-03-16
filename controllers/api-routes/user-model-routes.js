@@ -1,5 +1,6 @@
-const {User, Post} = require("../../models");
+const { User, Post, Comment } = require("../../models");
 const express = require("express");
+const sequelize = require("../../db/database-connection");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -18,10 +19,21 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: ["username", "email"],
-    include: {
-      model: Post,
-      attributes: ['title', 'content']
-    },
+    include: [
+      {
+        model: Post,
+        attributes: ["title", "content"],
+      },
+      {
+        model: Comment,
+        as: "Comments Posted",
+        attributes: ["text"],
+        include: {
+          model: Post,
+          attributes: ["title"],
+        },
+      },
+    ],
     where: {
       id: req.params.id,
     },
