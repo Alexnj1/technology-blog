@@ -1,6 +1,6 @@
 // IMPORT NECESSARY DEPENDENCIES
 const express = require("express");
-const sequelize = require("./db/database-connection");
+const sequelize = require("./models/db/database-connection");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");

@@ -1,6 +1,6 @@
 const { Post, User, Comment } = require("../../models");
 const express = require("express");
-const sequelize = require("../../db/database-connection");
+const sequelize = require("../../models/db/database-connection");
 const router = express.Router();
 
 router.get("/", (req, res) => {
