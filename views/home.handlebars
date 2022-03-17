@@ -1,0 +1,18 @@
+<h2 class="text-center my-3 text-dark">CURRENT POSTS</h2>
+
+<div class="list-group mx-5">
+    {{#each posts}}
+  <a
+    href="/home/post/{{id}}"
+    class="list-group-item list-group-item-action bg-info my-4 border border-dark border-2"
+    aria-current="true"
+  >
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{title}}</h5>
+      <small>{{comment_count}} Comments</small>
+    </div>
+    <p class="mb-1">{{content}}</p>
+    <small>Posted by {{user.username}} on {{format_date createdAt}} </small>
+  </a>
+  {{/each}}
+</div>

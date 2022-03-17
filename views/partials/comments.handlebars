@@ -1,0 +1,11 @@
+<ol class="list-group list-group-numbered col-6 mx-auto border border-0">
+    {{#each this}}
+  <li class="list-group-item d-flex justify-content-between my-2 align-items-start border border-2 border-dark">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{text}}</div>
+      from: {{user.username}}
+    </div>
+    <span class="badge bg-secondary rounded-pill">{{format_date createdAt}}</span>
+  </li>
+  {{/each}}
+</ol>

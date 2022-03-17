@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
     attributes: [
       "title",
       "content",
+      "createdAt",
       [
         sequelize.literal(
           "(SELECT COUNT (*) FROM comment  WHERE comment.post_id = post.id)"

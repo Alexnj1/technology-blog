@@ -1,0 +1,20 @@
+<h1 class="text-center">Post</h1>
+
+<div class="card text-center fw-bold col-10 mx-auto border border-2 border-dark">
+  <div class="card-header bg-info">
+    Posted by: {{post.user.username}}
+  </div>
+  <div class="card-body bg-secondary border-top border-bottom border-top-3 border-bottom-3 border-dark">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.content}}</p>
+    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+  </div>
+  <div class="card-footer bg-info">
+    Posted on {{format_date post.createdAt}}
+  </div>
+</div>
+
+{{#if post.Comments}}
+<h4 class="text-center my-3">Comments</h4>
+{{>comments post.Comments}}
+{{/if}}
