@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
     .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));
       console.log(posts);
-      res.render("home", { posts });
+      res.render("home", { posts, loggedIn:req.session.loggedIn });
     })
     .catch((err) => {
       res.status(500);
@@ -34,6 +34,10 @@ router.get("/", (req, res) => {
     });
   // res.render('home')
 });
+
+router.get('/login', (req,res) => {
+    res.render('login')
+})
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({

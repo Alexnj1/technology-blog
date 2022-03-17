@@ -4,14 +4,14 @@ const sequelize = require("./models/db/database-connection");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
-const routes = require('./controllers')
-const helpers = require('./controllers/helpers')
+const routes = require("./controllers");
+const helpers = require("./controllers/helpers");
 
 // INITIALIZE EXPRESS
 const app = express();
 
 // SET HANDLEBARS ENGINE
-const hbs = exphbs.create({helpers});
+const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
@@ -32,9 +32,9 @@ const sess = {
 // CONFIGURE EXPRESS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"))); // will already be looking in public folder, dont reference public in handlebars
 app.use(session(sess));
-app.use(routes); // this will be used for routes 
+app.use(routes); // this will be used for routes
 
 // ENABLE CONNECTION
 sequelize.sync({ force: false }).then(() => {
