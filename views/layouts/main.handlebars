@@ -27,16 +27,16 @@
         </div>
         <div class="collapse navbar-collapse mx-2" id="navbarNav">
           <ul class="navbar-nav ">
-            <li class="nav-item">
+            <li class="nav-item d-flex align-items-center">
               <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
             </li>
             {{#if loggedIn}}
-            <li class="nav-item">
-              <a class="nav-link active text-light" href="#">Dashboard</a>
+            <li class="nav-item text-center d-flex align-items-center">
+              <a class="nav-link active text-light" href="/dashboard">Dashboard ({{username}})</a>
             </li>
             
-            <li class="nav-item">
-              <a class="nav-link active text-light" id="logout" href="/">Logout</a>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link active text-light" id="logout" href="/">Logout </a>
             </li>
             {{else}}
             <li class="nav-item">

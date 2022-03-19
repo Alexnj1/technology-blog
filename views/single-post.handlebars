@@ -4,17 +4,27 @@
   <div class="card-header bg-info">
     Posted by: {{post.user.username}}
   </div>
-  <div class="card-body bg-secondary border-top border-bottom border-top-3 border-bottom-3 border-dark">
+  <div class="card-body bg-light border-top border-bottom border-top-3 border-bottom-3 border-dark">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.content}}</p>
-    {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
   </div>
   <div class="card-footer bg-info">
     Posted on {{format_date post.createdAt}}
   </div>
 </div>
 
+{{#if loggedIn}}
+
+<div class="input-group w-50 mx-auto my-5">
+            <input type="text" id="new-comment" class="form-control" placeholder="Say something about this post..." aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <button type="button" id="post-comment" class="btn btn-dark rounded">Post Comment</button>
+        </div>
+
+{{/if}}
+
 {{#if post.Comments}}
 <h4 class="text-center my-3">Comments</h4>
 {{>comments post.Comments}}
 {{/if}}
+
+<script src="/JS/comment.js"></script>

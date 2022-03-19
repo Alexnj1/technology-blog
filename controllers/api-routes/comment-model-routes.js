@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
         },
       },
     ],
+    order: [["createdAt", "DESC"]]
   })
     .then((data) => {
       res.status(200).json(data);
@@ -56,7 +57,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   Comment.create({
     text: req.body.text,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
     post_id: req.body.post_id,
   })
     .then((data) => {

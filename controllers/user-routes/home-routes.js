@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
     .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));
       console.log(posts);
-      res.render("home", { posts, loggedIn:req.session.loggedIn });
+      res.render("home", { posts, loggedIn:req.session.loggedIn, username: req.session.username });
     })
     .catch((err) => {
       res.status(500);
@@ -50,9 +50,12 @@ router.get("/post/:id", (req, res) => {
       {
         model: Comment,
         attributes: ["text", "createdAt", "updatedAt"],
+        separate: true,
+        order: [["createdAt", "DESC"]],
         include: {
             model:User,
-            attributes: ["username"]
+            attributes: ["username"],
+            
         }
       },
     ],
@@ -63,7 +66,7 @@ router.get("/post/:id", (req, res) => {
     .then((postData) => {
       const post = postData.get({ plain: true });
     //   console.log(post.Comments)
-      res.render("single-post", {post});
+      res.render("single-post", {post, loggedIn: req.session.loggedIn, username:req.session.username});
     })
     .catch((err) => {
       res.status(500);
