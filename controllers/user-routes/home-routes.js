@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
   })
     .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+      // console.log(posts);
       res.render("home", { posts, loggedIn:req.session.loggedIn, username: req.session.username });
     })
     .catch((err) => {
@@ -41,7 +41,7 @@ router.get('/login', (req,res) => {
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({
-    attributes: ["title", "content", "createdAt"],
+    attributes: ["user_id", "title", "content", "createdAt"],
     include: [
       {
         model: User,
@@ -65,8 +65,15 @@ router.get("/post/:id", (req, res) => {
   })
     .then((postData) => {
       const post = postData.get({ plain: true });
+      function ownPost (data) {
+        if (data.user_id == req.session.user_id) {
+          return true
+        } else {
+          return false
+        }
+      }
     //   console.log(post.Comments)
-      res.render("single-post", {post, loggedIn: req.session.loggedIn, username:req.session.username});
+      res.render("single-post", {post, isOwnPost:ownPost(post), loggedIn: req.session.loggedIn, username:req.session.username});
     })
     .catch((err) => {
       res.status(500);

@@ -24,7 +24,7 @@ function postComment() {
     })
     .catch((err) => {
       console.log(err);
-      alert("You must login again!"); // check back on this
+      // alert("You must login again!"); // check back on this
       window.location.replace("/home/login");
     });
 }

@@ -1,4 +1,12 @@
 <h1 class="text-center my-4"><u>POST</u></h1>
+{{#if loggedIn}}
+  {{#if isOwnPost}}
+  <div class="text-center">
+    <a href="#"><button class="btn btn-small mx-4 my-3 btn-info fw-bold">Edit Post</button></a>
+    <button class="btn btn-small mx-4 my-3 btn-danger fw-bold" id="delete-post-btn">Delete Post</button>
+  </div>
+  {{/if}}
+{{/if}}
 
 <div class="card text-center fw-bold col-10 mx-auto border border-2 border-dark">
   <div class="card-header bg-info">
@@ -27,4 +35,12 @@
 {{>comments post.Comments}}
 {{/if}}
 
+{{#if loggedIn}}
 <script src="/JS/comment.js"></script>
+{{/if}}
+
+{{#if loggedIn}}
+  {{#if isOwnPost}}
+  <script src="/JS/delete-post.js"></script>
+  {{/if}}
+{{/if}}

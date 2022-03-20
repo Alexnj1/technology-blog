@@ -5,7 +5,7 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const routes = require("./controllers");
-const helpers = require("./utils/helpers");
+const helpers = require("./utils/handlebars-helpers");
 
 // INITIALIZE EXPRESS
 const app = express();
