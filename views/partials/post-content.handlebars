@@ -1,0 +1,12 @@
+<div class="card text-center mb-5 fw-bold col-10 mx-auto border border-2 border-dark">
+  <div class="card-header bg-info">
+    Posted by: {{user.username}}
+  </div>
+  <div class="card-body bg-light border-top border-bottom border-top-3 border-bottom-3 border-dark">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{content}}</p>
+  </div>
+  <div class="card-footer bg-info">
+    Posted on {{format_date createdAt}}
+  </div>
+</div>

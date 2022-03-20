@@ -12,7 +12,7 @@
       <small>{{comment_count}} Comments</small>
     </div>
     <p class="mb-1">{{content}}</p>
-    <small>Posted by {{user.username}} on {{format_date createdAt}} </small>
+    <small>Posted by {{user.username}} on {{format_date createdAt}}, updated: {{format_date updatedAt}} </small>
   </a>
   {{/each}}
 </div>

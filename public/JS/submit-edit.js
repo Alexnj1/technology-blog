@@ -1,10 +1,11 @@
-const postBtn = document.querySelector("#submit-post-btn");
+const postBtn = document.querySelector("#submit-edit-btn");
 
-function addPost(event) {
+function editPost(event) {
   event.preventDefault();
 
-  const postTitle = document.querySelector("#new-title").value.toString();
-  const postBody = document.querySelector("#new-post-body").value.toString();
+  const postTitle = document.querySelector("#edit-title").value.toString();
+  const postBody = document.querySelector("#edit-post-body").value.toString();
+  const postId = window.location.pathname.toString().slice(-1);
 
   if (postTitle && postBody) {
     if (postTitle.length > 255) {
@@ -20,8 +21,8 @@ function addPost(event) {
         }`
       );
     } else {
-      fetch("/api/post/", {
-        method: "POST",
+      fetch(`/api/post/${postId}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title: postTitle,
@@ -34,7 +35,7 @@ function addPost(event) {
           } else {
             console.log(response);
             alert("There has been an error");
-            window.location.replace("/home");
+              window.location.replace("/home");
           }
         })
         .catch((err) => {
@@ -46,4 +47,4 @@ function addPost(event) {
   }
 }
 
-postBtn.addEventListener("click", addPost);
+postBtn.addEventListener("click", editPost);

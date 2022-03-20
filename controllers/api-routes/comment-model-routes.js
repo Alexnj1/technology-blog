@@ -1,5 +1,6 @@
 const { Post, User, Comment } = require("../../models");
 const express = require("express");
+const isLoggedIn = require("../../utils/is-logged-in");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -54,7 +55,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", isLoggedIn, (req, res) => {
   Comment.create({
     text: req.body.text,
     user_id: req.session.user_id,

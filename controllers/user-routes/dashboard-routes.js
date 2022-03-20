@@ -45,4 +45,41 @@ router.get("/add", isLoggedIn, (req, res) => {
   });
 });
 
+router.get("/edit/:id", isLoggedIn, (req, res) => {
+  Post.findOne({
+    attributes: ["user_id", "title", "content", "createdAt"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    //   {
+    //     model: Comment,
+    //     attributes: ["text", "createdAt", "updatedAt"],
+    //     separate: true,
+    //     order: [["createdAt", "DESC"]],
+    //     include: {
+    //       model: User,
+    //       attributes: ["username"],
+    //     },
+    //   },
+    ],
+    where: {
+      id: req.params.id,
+    },
+  }).then((postData) => {
+      if (!postData) {
+          res.redirect('/dashboard')
+          return
+      }
+    const post = postData.get({ plain: true });
+    //   console.log(post.Comments)
+    res.render("edit-post", {
+      post,
+      loggedIn: req.session.loggedIn,
+      username: req.session.username,
+    });
+  });
+});
+
 module.exports = router;

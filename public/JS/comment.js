@@ -1,3 +1,5 @@
+// const { includes } = require("lodash");
+
 const commentButton = document.querySelector("#post-comment");
 
 function postComment() {
@@ -19,13 +21,17 @@ function postComment() {
   })
     .then((response) => {
       if (response.ok) {
-        window.location.reload();
+        if(response.url.includes('/login')) {
+          window.location.replace(response.url);
+        } else {
+          window.location.reload()
+        }
       }
     })
     .catch((err) => {
       console.log(err);
       // alert("You must login again!"); // check back on this
-      window.location.replace("/home/login");
+      // window.location.replace("/home/login");
     });
 }
 

@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
       "title",
       "content",
       "createdAt",
+      "updatedAt",
       [
         sequelize.literal(
           "(SELECT COUNT (*) FROM comment  WHERE comment.post_id = post.id)"
@@ -21,7 +22,7 @@ router.get("/", (req, res) => {
       model: User,
       attributes: ["username"],
     },
-    order: [["createdAt", "DESC"]],
+    order: [["updatedAt", "DESC"]],
   })
     .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));

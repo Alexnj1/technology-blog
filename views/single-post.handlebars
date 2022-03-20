@@ -2,24 +2,13 @@
 {{#if loggedIn}}
   {{#if isOwnPost}}
   <div class="text-center">
-    <a href="#"><button class="btn btn-small mx-4 my-3 btn-info fw-bold">Edit Post</button></a>
+    <a href="/dashboard/edit/{{post.id}}"><button class="btn btn-small mx-4 my-3 btn-info fw-bold">Edit Post</button></a>
     <button class="btn btn-small mx-4 my-3 btn-danger fw-bold" id="delete-post-btn">Delete Post</button>
   </div>
   {{/if}}
 {{/if}}
 
-<div class="card text-center fw-bold col-10 mx-auto border border-2 border-dark">
-  <div class="card-header bg-info">
-    Posted by: {{post.user.username}}
-  </div>
-  <div class="card-body bg-light border-top border-bottom border-top-3 border-bottom-3 border-dark">
-    <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.content}}</p>
-  </div>
-  <div class="card-footer bg-info">
-    Posted on {{format_date post.createdAt}}
-  </div>
-</div>
+{{>post-content post}}
 
 {{#if loggedIn}}
 
