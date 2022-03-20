@@ -11,7 +11,7 @@
 ### NPM Packages:
 
 - **express**: High performance framework for server-side applications
-- **express-session** and express-session-sequelize: For session creation and to connect/sync the sequelize database to the session.
+- **express-session** and **express-session-sequelize**: For session creation and to connect/sync the sequelize database to the session.
 - **mysql2 and sequelize**: To connect the application to a MySQL database and to query that database within JavaScript rather than the MySQL command-line shell.
 - **dotenv**: For setting environment variables.
 - **bcrypt**: For password hashing.
