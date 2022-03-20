@@ -34,7 +34,7 @@
 
     npm start
 
-### This will start the server on port 3001 for individual testing purposes. Navigate to [localhost](localhost:3001/home) to test the application out.
+### This will start the server on port 3001 for individual testing purposes. Navigate to localhost:3001/home to test the application out.
 
     ctrl+C
 
