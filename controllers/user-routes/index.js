@@ -6,7 +6,10 @@ const dashboardRoutes = require("./dashboard-routes")
 router.get('/', (req,res) => {
     res.redirect('/home')
 })
+router.get('/test', (req,res) => {
+    res.render('test')
+})
 router.use("/home", homeRoutes);
-router.use("/dashboard", dashboardRoutes)
+router.use("/dashboard", dashboardRoutes);
 
 module.exports = router;
