@@ -27,8 +27,8 @@ const sess = {
   store: new SequelizeStore({
     db: sequelize,
     // Alternate between main and testing expiration intervals, NOT both.
-    // checkExpirationInterval: 300000, // main - 5 minutes
-    // expiration: 300000               // main - 5 minutes
+    checkExpirationInterval: 300000, // main - 5 minutes
+    expiration: 300000               // main - 5 minutes
     // checkExpirationInterval: 5000, // testing
     // expiration: 5000               // testing
   }),
